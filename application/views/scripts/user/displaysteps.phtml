@@ -1,0 +1,81 @@
+
+<br><br><br>
+
+<div style="padding: 25px">
+
+    <ul>
+        <?php
+				foreach ($this->stories as $story) {
+				?>
+				 <div DIR="rtl">
+                        <div style="float: right;width: 40%"> <?= $story['name'] ?> </div>
+
+				<?php
+					if (strlen($story['titleImage']) > 0) {
+
+				?>
+                        <div DIR="ltr" > <img  src="../../../images/story<?=$story['level']?>/static/<?= $story['titleImage'] ?>" width="50%" height="30%"> </div>
+				</div>
+       
+					
+				<?php
+					}	
+				}	
+				?>
+				  <div style="clear: both"></div>
+				<?php
+        foreach ($this->stories as $story) {
+            $storySteps = split(",", $story['staticImages']);
+            $storyWrite = split(",", $story['staticStep']);
+            $level = $story['level'];
+            $count = 0;
+            $len1 = count($storySteps);
+            $len2 = count($storyWrite);
+            if ($len1 > $len2){
+                $loopCount = $len1;
+            }
+            else {
+                $loopCount = $len2;
+            }
+        }
+      //  foreach ($storySteps as $step) {
+        for ($count = 0; $count<$loopCount; $count++){
+            ?>
+            <?php
+            if (!empty($storyWrite[$count])) {
+                if (strlen($storyWrite[$count]) > 0) {
+                    ?>
+        <div DIR="rtl">
+                        <div style="float: right;width: 40%"> <?= $count + 1 ?> )<?= $storyWrite[$count] ?> </div>
+            <?php
+        }
+    }
+            if (!empty($storySteps[$count])) {
+                if (strlen($storySteps[$count]) > 0) {
+                    
+    ?>
+                        
+                <div DIR="ltr"> <img style="border: 1px solid;border-radius: 50px" src="../../../images/story<?=$level?>/static/<?= $storySteps[$count] ?>" width="50%" height="30%"> </div>
+                <br>
+
+    <?php
+                }
+            }
+   // $count++;
+    ?>
+                
+                 </div>
+        <div style="clear: both"></div>
+                <?php
+}
+?>
+
+
+       
+    </ul>
+</div>   
+
+
+
+
+
